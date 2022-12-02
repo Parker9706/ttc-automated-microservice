@@ -1,0 +1,23 @@
+{
+  "name": "ttc-automated-microservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Parker9706/ttc-automated-microservice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Parker9706/ttc-automated-microservice/issues"
+  },
+  "homepage": "https://github.com/Parker9706/ttc-automated-microservice#readme",
+  "dependencies": {
+    "imap": "^0.8.19",
+    "mailparser": "^3.5.0"
+  }
+}
