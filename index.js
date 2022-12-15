@@ -109,4 +109,4 @@ ${ttcMessage}`;
 };
 
 // Fetch alerts every 60 seconds
-setInterval(retrieveEmails(), 60000);
+setInterval(retrieveEmails, 60000);
