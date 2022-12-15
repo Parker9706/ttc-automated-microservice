@@ -24,6 +24,7 @@ const imapConfig = {
 
 // Query e-mail server & send message if applicable
 const retrieveEmails = () => {
+  console.log("Fetch attempt made... " + new Date().toGMTString());
   try {
     // Initiate connection
     const imap = new Imap(imapConfig);
