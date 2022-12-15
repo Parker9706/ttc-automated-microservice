@@ -58,11 +58,10 @@ const retrieveEmails = () => {
                 }
                 // Grab the message from TTC Communication
                 const ttcMessage = splitHtml[2].slice(0, splitHtml[2].length - 4);
-                // Format into a text message
+                // Format into a text message (format is to support the look of text messages)
                 const textMessage = `
-
-                ${timeStamp}
-                ${ttcMessage}`;
+${timeStamp}
+${ttcMessage}`;
 
                 console.log("E-Mail parsed successfully, initiating call to the Twilio API...");
                 // Twillio API Call
