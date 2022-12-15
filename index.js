@@ -51,7 +51,10 @@ const retrieveEmails = () => {
                   firstDigits = Number(firstDigits - 12);
                   firstDigits = firstDigits.toString();
                   firstDigits = firstDigits += timeStamp.slice(2, timeStamp.length);
-                  timeStamp = firstDigits;
+                  timeStamp = firstDigits += "PM";
+                } else {
+                  // Add AM suffix
+                  timeStamp += "AM";
                 }
                 // Grab the message from TTC Communication
                 const ttcMessage = splitHtml[2].slice(0, splitHtml[2].length - 4);
