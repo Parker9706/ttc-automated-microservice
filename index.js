@@ -8,7 +8,8 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 const accountSid = process.env.ACCOUNT_SID;
 const authToken = process.env.AUTH_TOKEN;
 const client = twilio(accountSid, authToken);
-const firstName = process.env.FIRST_NAME2;
+const firstName2 = process.env.FIRST_NAME2;
+const firstName = process.env.FIRST_NAME;
 const emailCode = process.env.EMAIL_CODE;
 const email = process.env.MY_EMAIL;
 const host = process.env.EMAIL_SERVER;
@@ -24,13 +25,12 @@ const imapConfig = {
 
 // Query e-mail server & send message if applicable
 const retrieveEmails = () => {
+  const theTime = new Date().toGMTString();
   // Prevent server shutdown from imap node module
   process.on("uncaughtException", function (err) {
-    console.log(new Date().toGMTString());
+    console.log(theTime);
     console.log("No alerts to fetch...");
   });
-  // Notify of fetch attempt
-  console.log("Fetch attempt made... " + new Date().toGMTString());
   try {
     // Initiate connection
     const imap = new Imap(imapConfig);
@@ -71,12 +71,18 @@ ${timeStamp}
 ${ttcMessage}`;
 
                 console.log("E-Mail parsed successfully, initiating call to the Twilio API...");
-                // Twillio API Call
+                // Twillio API Calls
                 client.messages 
                   .create({body: textMessage, from: process.env.TWILIO_NUMBER, to: process.env.PARKER_PHONE_NUMBER})
+                  .then(message => console.log(`Message successfully sent to ${firstName2}!`))
+                  .then(message => console.log("Message Text: ", textMessage))
+                  .catch((err) => console.log("Failure: ", err, `The message was not sent to ${firstName2}.`)); 
+                  
+                client.messages 
+                  .create({body: textMessage, from: process.env.TWILIO_NUMBER, to: process.env.AI_PHONE_NUMBER})
                   .then(message => console.log(`Message successfully sent to ${firstName}!`))
                   .then(message => console.log("Message Text: ", textMessage))
-                  .catch((err) => console.log("Failure: ", err, `The message was not sent to ${firstName}.`));    
+                  .catch((err) => console.log("Failure: ", err, `The message was not sent to ${firstName}.`));       
               });
             });
             // Mark emails as 'seen'
