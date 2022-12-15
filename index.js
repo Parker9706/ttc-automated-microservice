@@ -30,6 +30,7 @@ const retrieveEmails = () => {
   process.on("uncaughtException", function (err) {
     console.log(theTime);
     console.log("No alerts to fetch...");
+    console.log("_____________________________________");
   });
   try {
     // Initiate connection
