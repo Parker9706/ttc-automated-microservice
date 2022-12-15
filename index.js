@@ -24,6 +24,12 @@ const imapConfig = {
 
 // Query e-mail server & send message if applicable
 const retrieveEmails = () => {
+  // Prevent server shutdown from imap node module
+  process.on("uncaughtException", function (err) {
+    console.log(new Date().toGMTString());
+    console.log("No alerts to fetch...");
+  });
+  // Notify of fetch attempt
   console.log("Fetch attempt made... " + new Date().toGMTString());
   try {
     // Initiate connection
