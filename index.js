@@ -55,7 +55,9 @@ const retrieveEmails = () => {
                 let timeStamp = splitHtml[4].slice(19, splitHtml[4].length-7);
                 // Format the time into 12-hour time
                 let firstDigits = timeStamp.slice(0, 2);
-                if (firstDigits > 12) {
+                if (firstDigits === 12) {
+                  timeStamp = firstDigits += "PM";
+                } else if (firstDigits > 12) {
                   firstDigits = Number(firstDigits - 12);
                   firstDigits = firstDigits.toString();
                   firstDigits = firstDigits += timeStamp.slice(2, timeStamp.length);
@@ -122,4 +124,4 @@ ${ttcMessage}`;
 };
 
 // Fetch alerts every 60 seconds
-setInterval(retrieveEmails, 60000);
+setInterval(retrieveEmails, 30000);
